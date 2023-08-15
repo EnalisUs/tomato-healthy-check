@@ -1,5 +1,5 @@
 import streamlit as st 
-from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import webrtc_streamer, WebRtcMode
 import av
 from yolo_predictions import YOLO_Pred
 
