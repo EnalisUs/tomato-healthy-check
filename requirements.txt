@@ -7,7 +7,7 @@ labelImg
 filterpy==1.4.5
 scikit-image==0.19.3
 streamlit
-opencv-python-headless
+opencv-python
 PyYAML
 tensorflow
 cvzone
