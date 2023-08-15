@@ -9,10 +9,12 @@ st.set_page_config(page_title="YOLO Object Detection",
 
 st.header('Get Object Detection for any Image')
 st.write('Please Upload Image to get detections')
-
-with st.spinner('Please wait while your model is loading'):
+@st.cache
+def load():
     yolo = YOLO_Pred(onnx_model='./models/v5.onnx',
                     data_yaml='./models/data.yaml')
+with st.spinner('Please wait while your model is loading'):
+    load()
     #st.balloons()
 
 def upload_image():
