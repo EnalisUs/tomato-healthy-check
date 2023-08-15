@@ -75,7 +75,7 @@ def main():
 
                 st.success(f"Output video saved as {output_file}")
                 convertedVideo = "./testh264.mp4"
-                subprocess.call(args=f"ffmpeg -rtbufsize 50M -y -i {output_file} -c:v libx264 {convertedVideo}".split(" "))
+                subprocess.call(args=f"ffmpeg -framerate 30 -rtbufsize 10M -y -i {output_file} -c:v libx264 {convertedVideo}".split(" "))
     
                 # Display the output video
                 st.write("Output Video")
