@@ -9,3 +9,5 @@ streamlit
 opencv-python-headless
 PyYAML
 tensorflow
+cvzone
+streamlit_webrtc
