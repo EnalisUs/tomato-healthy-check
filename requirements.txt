@@ -7,3 +7,5 @@ filterpy==1.4.5
 scikit-image==0.19.3
 streamlit
 opencv-python-headless
+PyYAML
+tensorflow
