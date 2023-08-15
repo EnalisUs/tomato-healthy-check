@@ -5,10 +5,11 @@ jupyter
 labelImg
 filterpy==1.4.5
 scikit-image==0.19.3
-opencv-python
+
 streamlit
 opencv-python-headless
 PyYAML
+opencv-python
 tensorflow
 cvzone
 streamlit_webrtc
