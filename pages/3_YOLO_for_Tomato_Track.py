@@ -80,13 +80,10 @@ def main():
                 writer.release()
 
                 st.success(f"Output video saved as {output_file}")
-                convertedVideo = "./testh264.mp4"
-                subprocess.call(args=f"ffmpeg -rtbufsize 250M -y -i {output_file} -c:v libx264 {convertedVideo}".split(" "))
-    
-                # Display the output video
-                st.write("Output Video")
-                with open(convertedVideo, "rb") as f:
-                    video_bytes = f.read()
-                st.video(video_bytes,format='video/mp4',start_time=0)
+                with open(output_file, 'rb') as f:
+                    data = f.read()
+                    bin_str = base64.b64encode(data).decode()
+                    href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download</a>'
+                components.html(href)
 if __name__ == "__main__":
     main()
