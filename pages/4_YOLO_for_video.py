@@ -50,7 +50,7 @@ def main():
         col1 , col2 = st.columns(2)
         
         with col1:
-            st.info('Preview of Image')
+            st.info('Preview of Video')
             st.video(temp_file_to_save)
             
         with col2:
@@ -74,13 +74,10 @@ def main():
                 writer.release()
 
                 st.success(f"Output video saved as {output_file}")
-                convertedVideo = "./testh264.mp4"
-                subprocess.call(args=f"ffmpeg -rtbufsize 100M -y -i {output_file} -c:v libx264 {convertedVideo}".split(" "))
-    
-                # Display the output video
-                st.write("Output Video")
-                with open(convertedVideo, "rb") as f:
-                    video_bytes = f.read()
-                st.video(video_bytes,format='video/mp4',start_time=0)
+                with open(output_file, 'rb') as f:
+                    data = f.read()
+                    bin_str = base64.b64encode(data).decode()
+                    href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download</a>'
+                components.html(href)
 if __name__ == "__main__":
     main()
