@@ -11,3 +11,4 @@ PyYAML
 tensorflow
 cvzone
 streamlit_webrtc
+sampling-utils
