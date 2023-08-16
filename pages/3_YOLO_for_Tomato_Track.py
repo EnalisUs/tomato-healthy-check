@@ -3,7 +3,7 @@ import streamlit as st
 from PIL import Image
 from yolo_track_SORT import YOLO_TRACK  # Import your YOLO_Pred class
 import numpy as np
-
+import base64
 import subprocess
 
 with st.spinner('Please wait while your model is loading'):
