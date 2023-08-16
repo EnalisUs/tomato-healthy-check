@@ -77,7 +77,7 @@ def main():
                 writer.release()
 
                 st.success(f"Output video saved as {output_file}")
-               with open(output_file, 'rb') as f:
+                with open(output_file, 'rb') as f:
                     data = f.read()
                     bin_str = base64.b64encode(data).decode()
                     href = f'<a style="text-decoration:none;color:#FAFAFA;" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
