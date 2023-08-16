@@ -3,9 +3,10 @@ import streamlit as st
 from PIL import Image
 from yolo_predictions import YOLO_Pred  # Import your YOLO_Pred class
 import numpy as np
-import subprocess
 import base64
 import os
+import streamlit.components.v1 as components
+
 with st.spinner('Please wait while your model is loading'):
     yolo_pred = YOLO_Pred(onnx_model='./models/v5.onnx',
                     data_yaml='./models/data.yaml')
@@ -76,10 +77,10 @@ def main():
                 writer.release()
 
                 st.success(f"Output video saved as {output_file}")
-                with open(output_file, 'rb') as f:
+               with open(output_file, 'rb') as f:
                     data = f.read()
                     bin_str = base64.b64encode(data).decode()
-                    href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download</a>'
+                    href = f'<a style="text-decoration:none;color:#FAFAFA;" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
                 components.html(href)
 if __name__ == "__main__":
     main()
