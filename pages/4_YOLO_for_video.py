@@ -4,6 +4,7 @@ from PIL import Image
 from yolo_predictions import YOLO_Pred  # Import your YOLO_Pred class
 import numpy as np
 import subprocess
+import base64
 with st.spinner('Please wait while your model is loading'):
     yolo_pred = YOLO_Pred(onnx_model='./models/v5.onnx',
                     data_yaml='./models/data.yaml')
