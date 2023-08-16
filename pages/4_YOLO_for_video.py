@@ -5,6 +5,8 @@ from yolo_predictions import YOLO_Pred  # Import your YOLO_Pred class
 import numpy as np
 import base64
 import os
+import datetime
+
 import streamlit.components.v1 as components
 
 with st.spinner('Please wait while your model is loading'):
@@ -48,7 +50,8 @@ def main():
         # specify a writer to write a processed video to a disk frame by frame
         fourcc_h264 = cv2.VideoWriter_fourcc(*'H264')
         out_mp4 = cv2.VideoWriter(temp_file_result, fourcc_h264, frame_fps, (width, height),isColor = False)
-        output_file = "output.mp4"
+        
+        output_file = 'output_{0}.mp4'.format(datetime.datetime.now().strftime("%Y-%m-%d"))
         writer = cv2.VideoWriter(output_file, fourcc_h264, frame_fps, (width, height))
         col1 , col2 = st.columns(2)
         
@@ -80,7 +83,7 @@ def main():
                 with open(output_file, 'rb') as f:
                     data = f.read()
                     bin_str = base64.b64encode(data).decode()
-                    href = f'<a style="text-decoration:none;color:#FAFAFA;" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
+                    href = f'<a style="text-decoration:none;color:#FAFAFA;padding:12px 16px;background-color:#fcfcfc" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
                 components.html(href)
 if __name__ == "__main__":
     main()
