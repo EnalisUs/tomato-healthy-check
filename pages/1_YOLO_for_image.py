@@ -12,10 +12,6 @@ st.write('Please Upload Image to get detections')
 with st.spinner('Please wait while your model is loading'):
     yolo_pred = YOLO_Pred(onnx_model='./models/v5.onnx',
                     data_yaml='./models/data.yaml')
-with st.spinner('Please wait while your model is loading'):
-    yolo = load()
-    #st.balloons()
-
 def upload_image():
     # Upload Image
     image_file = st.file_uploader(label='Upload Image')
