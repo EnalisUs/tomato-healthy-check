@@ -77,14 +77,13 @@ def main():
                         
                         # Write the frame to the video writer
                         writer.write(np.uint8(np.array(output_frame)[:,:,::-1]))
-
+                cap.release()
                 writer.release()
-
                 st.success(f"Output video saved as {output_file}")
                 with open(output_file, 'rb') as f:
                     data = f.read()
                     bin_str = base64.b64encode(data).decode()
-                    href = f'<a style="text-decoration:none;color:#FAFAFA;padding:12px 16px;background-color:#fcfcfc" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
+                    href = f'<a style="text-decoration:none;color:black;padding:12px 16px;background-color:#fcfcfc;border:1px solid black;border-radius:4px;" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
                 components.html(href)
 if __name__ == "__main__":
     main()
