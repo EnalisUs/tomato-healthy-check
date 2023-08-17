@@ -3,3 +3,4 @@ pkg-config
 default-libmysqlclient-dev
 libgl1
 ffmpeg
+libx264-dev
