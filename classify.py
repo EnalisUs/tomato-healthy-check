@@ -103,13 +103,13 @@ def get_heatmap(vectorized_image, model, pred_index=None):
     gradient_model = tf.keras.models.Model(
         [model.inputs], [model.get_layer(last_conv_layer).output, model.output]
     )
-
+    
     # Gradient Computations
     with tf.GradientTape() as tape:
         last_conv_layer_output, preds = gradient_model(vectorized_image)
         if pred_index is None:
             pred_index = tf.argmax(preds[0])
-
+        print(pred_index)
         class_channel = preds[:, pred_index]
 
     grads = tape.gradient(class_channel, last_conv_layer_output)
