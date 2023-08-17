@@ -10,7 +10,7 @@ st.set_page_config(page_title="YOLO Object Detection",
 st.header('Get Object Detection for any Image')
 st.write('Please Upload Image to get detections')
 with st.spinner('Please wait while your model is loading'):
-    yolo_pred = YOLO_Pred(onnx_model='./models/v5.onnx',
+    yolo = YOLO_Pred(onnx_model='./models/v5.onnx',
                     data_yaml='./models/data.yaml')
 def upload_image():
     # Upload Image
@@ -23,7 +23,7 @@ def upload_image():
         #st.json(file_details)
         # validate file
         if file_details['filetype'] in ('image/png','image/jpeg'):
-            st.success('VALID IMAGE file type (png or jpeg')
+            st.success('VALID IMAGE file type (png or jpeg)')
             return {"file":image_file,
                     "details":file_details}
         
@@ -66,7 +66,7 @@ def main():
                     #slice off the alpha channel
                         image_array = image_array[:, :, :3]
                         image_array = np.ascontiguousarray(image_array, dtype=np.uint8)
-                    pred_img, number = yolo_pred.predictions(image_array,show_class)
+                    pred_img, number = yolo.predictions(image_array,show_class)
                     pred_img_obj = Image.fromarray(pred_img)
                     prediction = True
         if prediction:
@@ -75,7 +75,7 @@ def main():
                 st.caption("Object detection from YOLO V5 model")
                 st.image(pred_img_obj)
             with col4:
-                if number == None:
+                if number == 0:
                     st.write(':tomato: Number of Totomaes Detected: ',0)
                 else:
                     st.write(':tomato: Number of Totomaes Detected: ',classify.sum_value(number))
