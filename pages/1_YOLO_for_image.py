@@ -24,8 +24,6 @@ def upload_image():
         # validate file
         if file_details['filetype'] in ('image/png','image/jpeg'):
             st.success('VALID IMAGE file type (png or jpeg)')
-            return {"file":image_file,
-                    "details":file_details}
         
         else:
             st.error('INVALID Image file type')
