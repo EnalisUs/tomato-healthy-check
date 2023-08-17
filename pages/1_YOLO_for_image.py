@@ -66,7 +66,7 @@ def main():
                     #slice off the alpha channel
                         image_array = image_array[:, :, :3]
                         image_array = np.ascontiguousarray(image_array, dtype=np.uint8)
-                    pred_img, number = yolo.predictions(image_array,show_class)
+                    pred_img, number = yolo_pred.predictions(image_array,show_class)
                     pred_img_obj = Image.fromarray(pred_img)
                     prediction = True
         if prediction:
