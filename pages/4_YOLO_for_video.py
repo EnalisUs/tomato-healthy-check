@@ -47,7 +47,7 @@ def main():
         frame_fps = int(cap.get(cv2.CAP_PROP_FPS))  ##<< No need for an int
         
         # specify a writer to write a processed video to a disk frame by frame
-        fourcc_h264 = cv2.VideoWriter_fourcc(*'MJPG')
+        fourcc_h264 = cv2.VideoWriter_fourcc(*'MP4V')
         out_mp4 = cv2.VideoWriter(temp_file_result, fourcc_h264, frame_fps, (width, height),isColor = False)
         
         output_file = './static/output_{0}.mp4'.format(datetime.datetime.now().strftime("%Y-%m-%d"))
