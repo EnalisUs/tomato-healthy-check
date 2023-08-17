@@ -86,7 +86,7 @@ def main():
                 with open(output_file, 'rb') as f:
                     data = f.read()
                     bin_str = base64.b64encode(data).decode()
-                    href = f'<a style="text-decoration:none;color:#black;padding:12px 16px;background-color:#fcfcfc" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
+                    href = f'<a style="text-decoration:none;color:black;padding:12px 16px;background-color:#fcfcfc;border:1px solid black;border-radius:4px;" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
                     st.markdown(href,unsafe_allow_html=True)
 if __name__ == "__main__":
     main()
