@@ -52,7 +52,7 @@ def load_image_object_detection(box,image):
         crop_image = image[y:y+h,x:x+w]
         # resize the image
         im_rgb = cv2.cvtColor(crop_image, cv2.COLOR_BGR2RGB)
-        resize_image = cv2.resize(im_rgb,(224,224))
+        resize_image = cv2.resize(crop_image,(224,224))
         # convert image into array 3 dimension
         x = np.array(resize_image,dtype=np.float32)
         x = np.expand_dims(x,axis=0)
