@@ -8,7 +8,7 @@ yolo = YOLO_Pred('./models/v5.onnx',
                  './models/data.yaml')
 
 
-def video_frame_callback(frame):
+def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
     img = frame.to_ndarray(format="rgb24")
     # any operation 
     #flipped = img[::-1,:,:]
