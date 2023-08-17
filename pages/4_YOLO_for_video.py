@@ -45,8 +45,7 @@ def main():
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         frame_fps = int(cap.get(cv2.CAP_PROP_FPS))  ##<< No need for an int
-        st.write(width, height, frame_fps)
-    
+        
         # specify a writer to write a processed video to a disk frame by frame
         fourcc_h264 = cv2.VideoWriter_fourcc(*'H264')
         out_mp4 = cv2.VideoWriter(temp_file_result, fourcc_h264, frame_fps, (width, height),isColor = False)
@@ -79,11 +78,11 @@ def main():
                         writer.write(np.uint8(np.array(output_frame)[:,:,::-1]))
                 cap.release()
                 writer.release()
-                st.success(f"Output video saved as {output_file}")
+                st.success(f"Output video in below")
                 with open(output_file, 'rb') as f:
                     data = f.read()
                     bin_str = base64.b64encode(data).decode()
                     href = f'<a style="text-decoration:none;color:black;padding:12px 16px;background-color:#fcfcfc;border:1px solid black;border-radius:4px;" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
-                components.html(href)
+                    st.markdown(href,unsafe_allow_html=True)
 if __name__ == "__main__":
     main()
