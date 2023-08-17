@@ -49,7 +49,8 @@ def main():
         # specify a writer to write a processed video to a disk frame by frame
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         
-        output_file = "output.mp4"
+        output_file = './static/output_{0}.mp4'.format(datetime.datetime.now().strftime("%Y-%m-%d"))
+
         writer = cv2.VideoWriter(output_file, fourcc, frame_fps, (width, height))
         col1 , col2 = st.columns(2)
         
@@ -80,11 +81,11 @@ def main():
 
                 writer.release()
 
-                st.success(f"Output video saved as {output_file}")
+                st.success(f"Output video in below")
                 with open(output_file, 'rb') as f:
                     data = f.read()
                     bin_str = base64.b64encode(data).decode()
-                    href = f'<a style="text-decoration:none;color:#FAFAFA;padding:12px 16px;background-color:#fcfcfc" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
+                    href = f'<a style="text-decoration:none;color:#black;padding:12px 16px;background-color:#fcfcfc" href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(output_file)}">Download</a>'
                     st.markdown(href,unsafe_allow_html=True)
 if __name__ == "__main__":
     main()
