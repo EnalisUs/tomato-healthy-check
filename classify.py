@@ -109,7 +109,7 @@ def get_heatmap(vectorized_image, model, pred_index=None):
         last_conv_layer_output, preds = gradient_model(vectorized_image)
         if pred_index is None:
             pred_index = tf.argmax(preds[0])
-        print(pred_index)
+        
         class_channel = preds[:, pred_index]
 
     grads = tape.gradient(class_channel, last_conv_layer_output)
@@ -153,9 +153,11 @@ def save_image_gradient():
                 image = tf.keras.utils.load_img("./detected/" + str(i), target_size=(224, 224))
                 x = tf.keras.utils.img_to_array(image)
                 x = np.expand_dims(x, axis=0)
-                x = tf.keras.applications.mobilenet_v2.preprocess_input(x)
+                x = tf.keras.applications.mobilenet_v3.preprocess_input(x)
+                mbv3 = load_mobiletnets_model()
+                class_id, _ = predictions_classification(mbv3,x)
                 model = grad_model()
-                heatmap = get_heatmap(x, model)
+                heatmap = get_heatmap(x, model,pred_index=class_id)
                 output_path = "./gradcam/" + str(i)
                 superimpose_gradcam("./detected/" + str(i), heatmap, output_path=output_path,csv_path=None,alpha=0.4)
                 with cols[ind]:
