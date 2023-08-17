@@ -50,7 +50,7 @@ class YOLO_TRACK():
 
         # widht and height of the image (input_image)
         image_w, image_h = input_image.shape[:2]
-        self.limits = [image_w/2,0,image_w/2,image_h]
+        self.limits = [INPUT_WH_YOLO/2,0,INPUT_WH_YOLO/2,INPUT_WH_YOLO]
         x_factor = image_w/INPUT_WH_YOLO
         y_factor = image_h/INPUT_WH_YOLO
         # draw line in center of image with w,h
