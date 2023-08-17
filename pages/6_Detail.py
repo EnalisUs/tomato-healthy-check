@@ -142,17 +142,30 @@ def main():
     #     st.markdown(head_message_temp.format(),unsafe_allow_html=True)
     #     st.image('https://fruitgrowersnews.com/wp-content/uploads/2020/09/Cornell-Freshly-picked-Cordera-apples_photo-credit-Kevin-Maloney-1-e1689642051696-532x330.jpg')
     #     st.markdown(full_message_temp.format(),unsafe_allow_html=True)   
-    # parameter a = '1'
+    # # parameter a = '1'
     # elif choice == "View Posts":
         # [a = "1"]
-        getParams = st.experimental_get_query_params()
-        all_titles = [i[0] for i in view_all_titles()]
-        # postlist = st.sidebar.selectbox("View Posts",all_titles)
-        post_result = get_blog_by_title(getParams["a"][0])
+    getParams = st.experimental_get_query_params()
+    all_titles = [i[0] for i in view_all_titles()]
+    if getParams == {}:
+        st.write("Choose article to view detail")
+        postlist = st.sidebar.selectbox("View Posts",all_titles)
+        post_result = get_blog_by_title(postlist)
         for i in post_result:
             b_author = i[0]
             b_title = i[1]
             # b_title = getParams["a"][0]
+            b_article = i[2]
+            b_post_date = i[3]
+            b_image = i[4]
+            st.markdown(head_news.format(b_title,b_author,b_post_date,b_image),unsafe_allow_html=True)
+            st.markdown(body_news.format(b_article),unsafe_allow_html=True)
+    if getParams != {}:		    
+        post_result = get_blog_by_title(getParams["a"][0])
+        for i in post_result:
+            b_author = i[0]
+            # b_title = i[1]
+            b_title = getParams["a"][0]
             b_article = i[2]
             b_post_date = i[3]
             b_image = i[4]
