@@ -75,7 +75,7 @@ def main():
                 st.caption("Object detection from YOLO V5 model")
                 st.image(pred_img_obj)
             with col4:
-                if number == 0:
+                if not number:
                     st.write(':tomato: Number of Totomaes Detected: ',0)
                 else:
                     st.write(':tomato: Number of Totomaes Detected: ',classify.sum_value(number))
