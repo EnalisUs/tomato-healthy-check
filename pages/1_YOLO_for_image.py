@@ -24,6 +24,8 @@ def upload_image():
         # validate file
         if file_details['filetype'] in ('image/png','image/jpeg'):
             st.success('VALID IMAGE file type (png or jpeg)')
+            return {"file":image_file,
+                    "details":file_details}
         
         else:
             st.error('INVALID Image file type')
@@ -44,8 +46,6 @@ def main():
             st.image(image_obj)
             
         with col2:
-            st.subheader('Check below for file details')
-            st.json(object['details'])
             show_class = st.checkbox('Show classes in Detection')
             if not show_class:
                 show_class = False
