@@ -2,7 +2,6 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer, WebRtcMode
 import av
 from yolo_predictions import YOLO_Pred
-from turn import get_ice_servers
 # load yolo model
 yolo = YOLO_Pred('./models/v5.onnx',
                  './models/data.yaml')
@@ -22,7 +21,6 @@ def video_frame_callback(frame: av.VideoFrame) -> av.VideoFrame:
 
 webrtc_streamer(key="example", 
                 mode=WebRtcMode.SENDRECV,
-                rtc_configuration={"iceServers": get_ice_servers()},
                 video_frame_callback=video_frame_callback,
                 media_stream_constraints={"video": True, "audio": False},
                 async_processing=True,
