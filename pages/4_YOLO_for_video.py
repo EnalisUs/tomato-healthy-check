@@ -52,6 +52,7 @@ def main():
         out_mp4 = cv2.VideoWriter(temp_file_result, fourcc_h264, frame_fps, (width, height),isColor = False)
         
         output_file = 'output_{0}.mp4'.format(datetime.datetime.now().strftime("%Y-%m-%d"))
+        print(output_file)
         writer = cv2.VideoWriter(output_file, fourcc_h264, frame_fps, (width, height))
         col1 , col2 = st.columns(2)
         
